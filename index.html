@@ -20,7 +20,7 @@
         }
         
         .container {
-            max-width: 100%;
+            width: 100%;
             padding: 0;
         }
         
@@ -53,11 +53,11 @@
             z-index: 2;
             width: 100%;
             max-width: 800px;
-            padding: 40px;
+            padding: 20px;
         }
         
         .outline-text {
-            font-size: 6rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 900;
             letter-spacing: -0.04em;
             line-height: 1;
@@ -67,7 +67,7 @@
         }
         
         .gradient-text {
-            font-size: 6rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 900;
             letter-spacing: -0.04em;
             line-height: 0.9;
@@ -79,10 +79,11 @@
         }
         
         .tagline {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             font-weight: 300;
             opacity: 0.8;
             margin-bottom: 40px;
+            padding: 0 15px;
         }
         
         .scroll-indicator {
@@ -120,26 +121,27 @@
         }
         
         section {
-            padding: 120px 40px;
+            padding: 80px 20px;
             position: relative;
         }
         
         .section-title {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
             font-weight: 700;
             margin-bottom: 20px;
             letter-spacing: -0.02em;
         }
         
         .section-content {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .counter-section .countdown-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
             max-width: 800px;
             margin: 60px auto;
         }
@@ -163,7 +165,7 @@
         }
         
         .countdown-value {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 700;
             background: linear-gradient(135deg, #FE53BB, #6855E0);
             -webkit-background-clip: text;
@@ -185,14 +187,14 @@
         
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
         
         .details-card {
             background: rgba(20, 20, 20, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
+            padding: 30px;
             border-radius: 8px;
             position: relative;
             overflow: hidden;
@@ -209,7 +211,7 @@
         }
         
         .details-card h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             margin-bottom: 20px;
             font-weight: 600;
         }
@@ -218,6 +220,7 @@
             opacity: 0.7;
             line-height: 1.6;
             margin-bottom: 10px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
         }
         
         .rsvp-section {
@@ -228,7 +231,7 @@
             display: inline-block;
             background: linear-gradient(135deg, #6855E0, #FE53BB);
             color: white;
-            padding: 16px 32px;
+            padding: clamp(12px, 4vw, 16px) clamp(20px, 6vw, 32px);
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -237,6 +240,7 @@
             margin-top: 40px;
             border: none;
             cursor: pointer;
+            font-size: clamp(0.9rem, 3vw, 1rem);
         }
         
         .button:hover {
@@ -247,35 +251,28 @@
         .contact-info {
             margin-top: 30px;
             opacity: 0.6;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
         }
         
         footer {
-            padding: 60px 40px;
+            padding: 40px 20px;
             text-align: center;
             opacity: 0.4;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
         }
         
-        @media (max-width: 768px) {
-            .outline-text, 
-            .gradient-text {
-                font-size: 3.5rem;
-            }
-            
-            .tagline {
-                font-size: 1.2rem;
-            }
-            
+        @media (max-width: 480px) {
             section {
-                padding: 80px 20px;
+                padding: 60px 15px;
+            }
+            
+            .details-card {
+                padding: 25px;
             }
             
             .countdown-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .countdown-value {
-                font-size: 3rem;
+                gap: 15px;
             }
         }
     </style>
@@ -377,7 +374,7 @@
                 
                 if (distance < 0) {
                     clearInterval(countdownFunction);
-                    document.querySelector(".countdown-grid").innerHTML = "<div style='grid-column: span 4; text-align: center; font-size: 3rem;'>Party Time!</div>";
+                    document.querySelector(".countdown-grid").innerHTML = "<div style='grid-column: 1 / -1; text-align: center; font-size: clamp(2rem, 6vw, 3rem);'>Party Time!</div>";
                 }
             }, 1000);
         });
